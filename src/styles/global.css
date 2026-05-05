@@ -56,7 +56,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground text-[clamp(16px,0.382vw+14.5px,20px)];
+    @apply text-[clamp(16px,0.382vw+14.5px,20px)] bg-background text-foreground;
   }
   .cn-font-heading {
     @apply font-heading;
