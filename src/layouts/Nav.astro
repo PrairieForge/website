@@ -67,6 +67,30 @@ import { Menu, X } from "@lucide/astro";
     }
   }
 
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation::after {
+    content: "";
+    position: absolute;
+    width: calc(100% - 2rem);
+    height: 2px;
+    bottom: 0.5rem;
+    left: 1rem;
+    background-color: var(--color-accent);
+
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
   nav::before {
     content: "";
     position: absolute;

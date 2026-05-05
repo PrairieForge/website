@@ -14,22 +14,22 @@ export const navItems: MenuItem[] = [
       {
         id: "fellowship",
         label: "Monthly Fellowship",
-        url: "/strategy/#fellowship",
+        url: "/strategy#fellowship",
       },
       {
         id: "internship",
         label: "Summer Internship",
-        url: "/strategy/#internship",
+        url: "/strategy#internship",
       },
       {
         id: "residency",
         label: "Residency",
-        url: "/strategy/#residency",
+        url: "/strategy#residency",
       },
       {
         id: "events",
         label: "Events",
-        url: "/strategy/#events",
+        url: "/strategy#events",
       },
     ],
   },
@@ -41,22 +41,22 @@ export const navItems: MenuItem[] = [
       {
         id: "map",
         label: "Map",
-        url: "/about/#map",
+        url: "/about#map",
       },
       {
         id: "constitution",
         label: "Constitution",
-        url: "/about/#constitution",
+        url: "/about#constitution",
       },
       {
         id: "join",
         label: "How to Join",
-        url: "/about/#join",
+        url: "/about#join",
       },
       {
         id: "friends",
         label: "Friends",
-        url: "/about/#friends",
+        url: "/about#friends",
       },
     ],
   },
