@@ -17,7 +17,11 @@ import Text from "#/components/Text.astro";
               as="a"
               href={item.url}
               variant="footerHeading"
-              class="hover:text-accent hover-underline-animation"
+              class:list={[
+                "hover:text-accent hover-underline-animation",
+                `/${Astro.url.pathname.split("/")[1]}` === item.url &&
+                  "text-accent",
+              ]}
             >
               {item.label}
             </Text>
@@ -47,27 +51,12 @@ import Text from "#/components/Text.astro";
 </div>
 
 <style>
-  .hover-underline-animation {
-    display: inline-block;
-    position: relative;
-  }
-
-  .hover-underline-animation::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--color-accent);
-
-    transform: scaleX(0);
-    transform-origin: bottom left;
-    transition: transform 0.25s ease-out;
-  }
-
-  .hover-underline-animation:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  body:has(#vision:target),
+  body:has(#vision-2:target),
+  body:has(#vision-3:target),
+  body:has(#vision-4:target) {
+    ul a[href$="#vision"] {
+      color: var(--color-accent);
+    }
   }
 </style>

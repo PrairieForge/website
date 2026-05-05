@@ -1,4 +1,5 @@
 ---
+import { Button } from "#/components/ui/button";
 import { navItems } from "#/lib/nav";
 import { Menu, X } from "@lucide/astro";
 ---
@@ -11,7 +12,7 @@ import { Menu, X } from "@lucide/astro";
   <div class="relative z-50 size-10 md:hidden">
     <label for="sidebar-toggle" class="absolute">
       <div
-        class="bg-foreground size-10 rounded-md p-2 group-has-checked:bg-transparent"
+        class="bg-foreground/90 size-10 rounded-md p-2 group-has-checked:bg-transparent"
       >
         <Menu
           class="transition-all duration-300 ease-out group-has-checked:scale-0 group-has-checked:rotate-90"
@@ -26,18 +27,28 @@ import { Menu, X } from "@lucide/astro";
   </div>
 
   <div
-    class="bg-background text-foreground md:text-background fixed inset-0 z-40 flex h-full translate-x-full flex-col items-center justify-center transition-all duration-200 ease-out group-has-checked:translate-none md:relative md:w-full md:translate-none md:flex-row md:bg-transparent"
+    class="bg-background text-foreground md:text-background fixed inset-0 z-40 flex h-full translate-x-full flex-col items-center justify-center transition-all duration-200 ease-out group-has-checked:translate-none max-md:gap-4 md:relative md:w-full md:translate-none md:flex-row md:bg-transparent"
   >
-    <a href="/" class="font-sans md:mr-auto">
+    <a href="/" class="font-sans max-md:text-4xl md:mr-auto">
       <h1>Prairie Forge Initiative</h1>
     </a>
     <!-- <h1>The current URL is: {Astro.url}</h1> -->
-    <!-- <h1>The current URL pathname is: {Astro.url.pathname}</h1> -->
-    <ul class="flex flex-col md:flex-row">
+    <!-- <h1>
+      The current URL pathname is: {`/${Astro.url.pathname.split("/")[1]}`}
+    </h1> -->
+    <ul class="flex flex-col max-md:gap-4 max-md:text-2xl md:flex-row">
       {
         navItems.map((item) => (
-          <li class="px-4">
-            <a href={item.url}>{item.label}</a>
+          <li>
+            <!-- <Button as='a' href={item.url} variant={'ghost'} class:list={[`/${Astro.url.pathname.split("/")[1]}` === item.url &&
+              "text-accent",]}>
+              {item.label}
+            </Button> -->
+            <a
+              href={item.url}
+              class:list={['px-4 py-2 hover-underline-animation rounded-lg',`/${Astro.url.pathname.split("/")[1]}` === item.url &&
+              "text-accent bg-background/90 ",]}
+              >{item.label}</a>
           </li>
         ))
       }
@@ -46,8 +57,14 @@ import { Menu, X } from "@lucide/astro";
 </nav>
 
 <style>
-  body:has(#vision:target) nav a[href="/#vision"] {
-    color: red;
+  body:has(#vision:target),
+  body:has(#vision-2:target),
+  body:has(#vision-3:target),
+  body:has(#vision-4:target) {
+    nav a[href$="#vision"] {
+      color: var(--color-accent);
+      background-color: color-mix(in srgb, var(--color-background) 90%, transparent);
+    }
   }
 
   nav::before {
@@ -82,7 +99,7 @@ import { Menu, X } from "@lucide/astro";
           opacity: 1;
         }
         to {
-          opacity: 0.75;
+          opacity: 0.9;
         }
       }
     }

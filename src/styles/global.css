@@ -56,7 +56,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply text-[clamp(16px,0.382vw+14.5px,20px)] bg-background text-foreground;
+    @apply bg-background text-foreground text-[clamp(16px,0.382vw+14.5px,20px)];
   }
   .cn-font-heading {
     @apply font-heading;
@@ -86,4 +86,28 @@
   50% {
     transform: translateY(1vmax);
   }
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: calc(100% - 2rem);
+  height: 2px;
+  bottom: 0.5rem;
+  left: 1rem;
+  background-color: var(--color-accent);
+
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
