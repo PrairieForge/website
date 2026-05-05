@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+const widths = {
+  base: "mx-auto w-[90%] max-w-(--width-base)",
+  wide: "mx-auto w-[90%] max-w-(--width-wide)",
+};
+
+type Width = keyof typeof widths;
+
+interface Props extends HTMLAttributes<"div"> {
+  as: "div" | "section" | "article";
+  width?: Width;
+  class?: string;
+}
+
+const {
+  as: As = "div",
+  width = "base",
+  class: className,
+  ...attrs
+} = Astro.props as Props;
+---
+
+<As class:list={[widths[width], className]} {...attrs}>
+  <slot />
+</As>
