@@ -1,0 +1,49 @@
+---
+import {
+  Card as CardRoot,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  CardMedia,
+} from "#/components/ui/card";
+import { type AstroComponent } from "@lucide/astro";
+
+interface Props {
+  item: {
+    id: string;
+    icon: AstroComponent;
+    prefix: string;
+    coreValue: string;
+    description: string;
+  };
+  index: number;
+}
+
+const { item, index } = Astro.props;
+const Icon = item.icon;
+const isEven = index % 2 === 1;
+---
+
+<CardRoot
+  class={[
+    isEven && "bg-background/60",
+    "transition-all duration-200 ease-out hover:scale-[1.015] hover:-translate-y-0.5 hover:shadow-md",
+  ]}
+>
+  <CardHeader class={`flex gap-4 items-center`}>
+    <CardMedia class="bg-secondary/10 flex items-center justify-center p-2">
+      <Icon />
+    </CardMedia>
+    <CardTitle class="flex flex-col">
+      <span class="text-secondary/60 text-base">
+        {item.prefix}
+      </span>
+      <span class="font-bold">{item.coreValue}</span>
+    </CardTitle>
+  </CardHeader>
+  <CardContent class="text-foreground/50">
+    {item.description}
+  </CardContent>
+</CardRoot>
