@@ -3,7 +3,10 @@
 @import "./theme.css";
 @import "bejamas/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+@theme {
+  --width-base: 65ch;
+  --width-wide: 90ch;
+}
 
 @theme inline {
   --font-sans: var(--font-sans);
@@ -53,12 +56,34 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-[clamp(16px,0.382vw+14.5px,20px)];
   }
   .cn-font-heading {
     @apply font-heading;
   }
   html {
-    @apply font-sans;
+    @apply scroll-smooth font-serif motion-reduce:scroll-auto;
+  }
+}
+
+/* NAV ARROWS */
+.arrow-down::before {
+  content: "↓";
+  position: absolute;
+  bottom: 2svh;
+  left: calc(-0.5em + 50vw);
+  color: var(--color-accent);
+  font-size: 2rem;
+  animation: 2s ease-in-out 0s infinite normal none running bounce-down;
+}
+
+/* ANIMATIONS */
+.bounce-down {
+  animation: bounce-down 2s ease-in-out infinite;
+}
+
+@keyframes bounce-down {
+  50% {
+    transform: translateY(1vmax);
   }
 }
