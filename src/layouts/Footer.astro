@@ -1,0 +1,73 @@
+---
+import { navItems } from "#/lib/nav";
+import { Image } from "astro:assets";
+import blacksmithImg from "#/assets/blacksmith.webp";
+import Text from "#/components/Text.astro";
+---
+
+<div
+  class="mx-auto flex w-[90%] max-w-(--width-base) items-end justify-between gap-32 pt-32"
+>
+  <ul class="flex flex-col pb-4 text-base">
+    {
+      navItems.map((item) => (
+        <>
+          <li>
+            <Text
+              as="a"
+              href={item.url}
+              variant="footerHeading"
+              class="hover:text-accent hover-underline-animation"
+            >
+              {item.label}
+            </Text>
+          </li>
+          {item.subMenu && (
+            <li class="ps-4">
+              <ul class="flex flex-col">
+                {item.subMenu.map((subItem) => (
+                  <Text
+                    as="a"
+                    href={subItem.url}
+                    variant="footerBase"
+                    class="text-secondary border-l-secondary hover:text-accent border-l-2 pl-2"
+                  >
+                    {subItem.label}
+                  </Text>
+                ))}
+              </ul>
+            </li>
+          )}
+        </>
+      ))
+    }
+  </ul>
+
+  <Image src={blacksmithImg} alt={"blacksmith"} class={"h-80 w-80"} />
+</div>
+
+<style>
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-accent);
+
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+</style>
