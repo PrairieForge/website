@@ -5,6 +5,7 @@ const variants = {
   default: "",
   hero: "font-sans text-[clamp(6rem,10.7vw+53.95px,13rem)] leading-[0.85]",
   subheading: "text-[clamp(24px,3.82vw+9px,64px)] font-bold",
+  subSubheading: "text-[clamp(20px,2.6vw+10px,40px)] font-bold",
   footerHeading: "text-2xl font-bold font-sans",
   footerBase: "text-base",
 };
@@ -23,6 +24,8 @@ const {
   class: className,
   ...attrs
 } = Astro.props as Props<HTMLTag>;
+
+import { fluidType } from "#/lib/fluidTypeGenerator";
 ---
 
 <As class:list={[variants[variant], className]} {...attrs}>

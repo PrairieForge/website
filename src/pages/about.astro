@@ -1,7 +1,123 @@
 ---
 import Layout from "#/layouts/Layout.astro";
+import Container from "#/components/Container.astro";
+import Text from "#/components/Text.astro";
+
+import { Image } from "astro:assets";
+import bgPlants from "#/assets/bg-plants.webp";
+import bgRoots from "#/assets/bg-roots.webp";
+
+import Map from "#/components/Map.astro";
+import { churches } from "#/data/about";
+
+// Sort churches alphabetically
+churches.sort((a, b) => {
+  const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
+
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+});
 ---
 
 <Layout>
-  <h1>About</h1>
+  <!-- BG Light -->
+  <div class="bg-foreground">
+    <Container
+      as="section"
+      width="wide"
+      class="text-background pt-32 text-center"
+    >
+      <Text as="h1" variant="hero">About Us</Text>
+    </Container>
+    <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
+  </div>
+
+  <!-- BG Dark -->
+  <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh flex-col justify-center gap-8"
+  >
+    <Text as={"h2"} variant={"subSubheading"} class="text-base">
+      We are <span class="text-primary">
+        a group of like-minded churches in southern MN
+      </span> partnering together to start and strengthen other like-minded churches
+      in southern MN.
+    </Text>
+  </Container>
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh flex-col justify-center gap-8"
+    id="map"
+  >
+    <Text as={"h2"} variant={"subSubheading"} class="text-base">
+      Partner Churches
+    </Text>
+    <Map data={churches} />
+    <ul class="text-secondary">
+      {
+        churches.map(({ url, name, city }) => (
+          <li>
+            <a href={url} class="underline">
+              {name} ({city})
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh flex-col justify-center gap-8"
+    id="friends"
+  >
+    <Text as={"h2"} variant={"subSubheading"} class="text-base"
+      >Friends of Prairie Forge</Text
+    >
+    <ul class="text-secondary">
+      <li>
+        <a class="underline" href="https://bcsmn.edu/">
+          Bethlehem College and Seminary
+        </a>
+      </li>
+      <li>
+        <a class="underline" href="https://tctnetwork.org/">
+          Treasuring Christ Together Network
+        </a>
+      </li>
+    </ul>
+  </Container>
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh flex-col justify-center gap-8"
+    id="join"
+  >
+    <Text as={"h2"} variant={"subSubheading"} class="text-base"
+      >How to join</Text
+    >
+    <p class="text-secondary">
+      Contact us at <a href="mailto:hello@prairieforge.org" class="underline">
+        hello@prairieforge.org
+      </a>
+    </p>
+  </Container>
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh flex-col justify-center gap-8"
+    id="constitution"
+  >
+    <Text as={"h2"} variant={"subSubheading"} class="text-base"
+      >Constitution</Text
+    >
+    <p class="text-secondary">
+      Download our Constitution <a href="#" class="underline">here.</a>
+    </p>
+  </Container>
 </Layout>

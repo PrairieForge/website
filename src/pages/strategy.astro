@@ -1,7 +1,193 @@
 ---
 import Layout from "#/layouts/Layout.astro";
+import Container from "#/components/Container.astro";
+import Text from "#/components/Text.astro";
+import Card from "#/components/Card.astro";
+
+import { Image } from "astro:assets";
+import bgPlants from "#/assets/bg-plants.webp";
+import bgRoots from "#/assets/bg-roots.webp";
+import fellowshipImg from "#/assets/fellowship.webp";
+import internshipImg from "#/assets/internship.webp";
+import eventImg from "#/assets/event.webp";
+
+import { internshipBenefits, internshipDescription } from "#/data/strategy";
 ---
 
 <Layout>
-  <h1>Strategy</h1>
+  <!-- BG Light -->
+  <div class="bg-foreground">
+    <Container
+      as="section"
+      width="wide"
+      class="text-background pt-32 text-center"
+    >
+      <Text as="h1" variant="hero">Our Strategy</Text>
+    </Container>
+    <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
+  </div>
+
+  <!-- BG Dark -->
+  <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh flex-col justify-center gap-8"
+    width="wide"
+  >
+    <Text as={"h2"} variant={"subSubheading"} class="text-base">
+      We gather for monthly <a
+        href="#fellowship"
+        class="text-accent hover:text-accent/90 hover-underline-animation"
+      >
+        fellowship.
+      </a>
+    </Text>
+    <Text as={"h2"} variant={"subSubheading"}>
+      We host a summer pastoral <a
+        href="#internship"
+        class="text-accent hover:text-accent/90 hover-underline-animation"
+      >
+        internship.
+      </a>
+    </Text>
+    <Text as={"h2"} variant={"subSubheading"}>
+      We provide extended pastoral training through <a
+        href="#residency"
+        class="text-accent hover:text-accent/90 hover-underline-animation"
+      >
+        residencies.
+      </a>
+    </Text>
+    <Text as={"h2"} variant={"subSubheading"}>
+      We hold periodic training events called <a
+        href="#events"
+        class="text-accent hover:text-accent/90 hover-underline-animation"
+      >
+        Prairie Fires.
+      </a>
+    </Text>
+  </Container>
+
+  <div class="bg-muted">
+    <Container
+      as="section"
+      class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
+      id="fellowship"
+    >
+      <Text as={"h2"} variant={"subheading"}
+        >We gather once a month for <span class="text-primary">
+          pastoral fellowship
+        </span> and strategic planning.</Text
+      >
+      <div class="flex flex-col gap-8 md:flex-row">
+        <div class="flex flex-col gap-8 md:order-2">
+          <p class="text-secondary">
+            We meet the second Tuesday of each month from 9am–11am. The location
+            varies. We often go out to lunch after.
+          </p>
+          <p class="text-secondary">
+            Join us at our next meeting: Tuesday, May 12th at <a
+              href="http://sojourners.church"
+              class="underline"
+            >
+              Sojourners Church in Albert Lea.
+            </a>
+          </p>
+        </div>
+        <Image
+          src={fellowshipImg}
+          alt={"picture of men eating lunch together"}
+          class="w-full rounded-lg shadow-md md:order-1 md:w-2/3"
+        />
+      </div>
+    </Container>
+  </div>
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
+    id="internship"
+  >
+    <Text as={"h2"} variant={"subheading"}
+      >Our <span class="text-primary">summer internship</span> is all about catching
+      a Gospel Imaginary.</Text
+    >
+    <div class="flex flex-col gap-8 md:flex-row">
+      <p class="text-secondary md:order-2">
+        We want to give you a taste of our shared convictions and help you think
+        through further ministry training and partnership in Soutnern MN.
+      </p>
+
+      <Image
+        src={internshipImg}
+        alt={"picture of summer interns"}
+        class="w-full rounded-lg shadow-md md:order-1 md:w-2/3"
+      />
+    </div>
+    <Text as={"h3"} variant={"subSubheading"}>The summer internship is</Text>
+    {internshipDescription.map((item, index) => <Card {item} {index} />)}
+    <Text as={"h3"} variant={"subSubheading"}
+      >Benefits of the summer internship</Text
+    >
+    {internshipBenefits.map((item, index) => <Card {item} {index} />)}
+    <Text as={"h3"} variant={"subSubheading"}>To Apply</Text>
+    <p class="text-secondary">
+      Contact pastor Tyler Mykkanen (pastor at Sojourners Church in Albert Lea)
+      at 507.391.9501 or <a
+        href="mailto:hello@prairieforge.org"
+        class="underline"
+      >
+        hello@prairieforge.org
+      </a>
+    </p>
+  </Container>
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
+    id="residency"
+  >
+    <Text as={"h2"} variant={"subheading"}
+      >We are building extended <span class="text-primary">
+        pastoral residencies.
+      </span></Text
+    >
+    <p class="text-secondary">
+      Stay in the loop by emailing us at <a
+        href="mailto:hello@prairieforge.org"
+        class="underline"
+      >
+        hello@prairieforge.org
+      </a>
+    </p>
+  </Container>
+
+  <Container
+    as="section"
+    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
+    id="events"
+  >
+    <Text as={"h2"} variant={"subheading"}
+      >We host periodic training events called <span class="text-primary">
+        Prairie Fires.
+      </span></Text
+    >
+    <div class="flex flex-col gap-8 md:flex-row">
+      <p class="text-secondary md:order-2">
+        Stay in the loop by emailing us at <a
+          href="mailto:hello@prairieforge.org"
+          class="underline"
+        >
+          hello@prairieforge.org
+        </a>
+      </p>
+
+      <Image
+        src={eventImg}
+        alt={"picture of Big God youth event"}
+        class="w-full rounded-lg shadow-md md:order-1 md:w-2/3"
+      />
+    </div>
+  </Container>
 </Layout>

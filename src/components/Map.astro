@@ -1,0 +1,99 @@
+---
+interface Props {
+  data: Object[];
+  fullscreen?: boolean;
+}
+
+const { data, fullscreen = false } = Astro.props;
+
+let mapHeight = fullscreen ? "100%" : "70%";
+---
+
+<!-- TODO: Map has a bug in mobile -->
+<div
+  id="hs-grayscale-leaflet"
+  class="hs-leaflet z-1 h-[20rem] w-full rounded-lg sm:h-[24rem] md:h-[32rem]"
+  style={{ "--map-height": mapHeight }}
+  data-markers={JSON.stringify(data)}
+>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  is:inline
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+>
+</script>
+<script>
+  const map = L.map("hs-grayscale-leaflet", {
+    center: [44.06065321193066, -93.1908356898296],
+    zoom: 9,
+  });
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    {
+      maxZoom: 19,
+      minZoom: 2,
+      attribution: '© <a href="https://carto.com/attributions">CARTO</a>',
+    },
+  ).addTo(map);
+
+  function createPopupContent({
+    name,
+    pastor,
+    email,
+    url,
+  }: {
+    name: string;
+    pastor: string;
+    email: string;
+    url: string;
+  }) {
+    return `
+        <div>
+          <h2 class='text-lg'>${name}</h2>
+          <p>${pastor}</p>
+          <p><a href='mailto:${email}'>${email}</a></p>
+          <p><a href='${url}'>Website</a></p>
+          </div>
+        `;
+  }
+
+  let dataString = document.getElementById("hs-grayscale-leaflet")!.dataset
+    .markers;
+
+  interface DataItem {
+    name: string;
+    city: string;
+    coords: [];
+    pastor: string;
+    email: string;
+    url: string;
+  }
+
+  let data;
+  if (dataString) {
+    data = JSON.parse(dataString) as DataItem[];
+  }
+
+  if (data) {
+    data.forEach((item) => {
+      L.marker(item.coords).bindPopup(createPopupContent(item)).addTo(map);
+    });
+  }
+
+  let width = document.documentElement.clientWidth;
+  if (width < 480) {
+    map.setZoom(7);
+  } else {
+    map.setZoom(8);
+  }
+</script>

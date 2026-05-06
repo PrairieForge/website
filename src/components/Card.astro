@@ -14,8 +14,8 @@ interface Props {
   item: {
     id: string;
     icon: AstroComponent;
-    prefix: string;
-    coreValue: string;
+    prefix?: string;
+    title: string;
     description: string;
   };
   index: number;
@@ -28,7 +28,9 @@ const isEven = index % 2 === 1;
 
 <CardRoot
   class:list={[
-    isEven && "bg-background/60",
+    isEven
+      ? "bg-[color-mix(in_srgb,var(--color-background)_50%,var(--color-muted))]"
+      : "bg-[color-mix(in_srgb,var(--color-background)_80%,var(--color-muted))]",
     "transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.015] hover:shadow-md",
   ]}
 >
@@ -37,10 +39,12 @@ const isEven = index % 2 === 1;
       <Icon />
     </CardMedia>
     <CardTitle class="flex flex-col">
-      <span class="text-secondary/60 text-base">
-        {item.prefix}
-      </span>
-      <span class="font-bold">{item.coreValue}</span>
+      {
+        item.prefix ?? (
+          <span class="text-secondary/60 text-base">{item.prefix}</span>
+        )
+      }
+      <span class="font-bold">{item.title}</span>
     </CardTitle>
   </CardHeader>
   <CardContent class="text-foreground/50">

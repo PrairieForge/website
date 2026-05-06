@@ -1,12 +1,12 @@
 ---
 import { Button } from "#/components/ui/button";
-import { navItems } from "#/lib/nav";
+import { navItems } from "#/data/nav";
 import { Menu, X } from "@lucide/astro";
 ---
 
 <!-- Use group and group-has-checked to toggle menu icon / checkbox / menu | https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-the-descendants-of-a-group | https://youtu.be/8eFeIFKAKHw?si=bTKM55MwRC8z5e2c -->
 <nav
-  class="group text-background sticky top-0 z-50 flex h-full justify-end px-4 py-8 md:backdrop-blur-md"
+  class="group text-background sticky top-0 z-50 flex h-20 justify-end items-center px-4 md:backdrop-blur-md"
 >
   <input type="checkbox" id="sidebar-toggle" class="hidden" />
   <div class="relative z-50 size-10 md:hidden">

@@ -1,5 +1,5 @@
 ---
-import { navItems } from "#/lib/nav";
+import { navItems } from "#/data/nav";
 import { Image } from "astro:assets";
 import blacksmithImg from "#/assets/blacksmith.webp";
 import Text from "#/components/Text.astro";
@@ -8,7 +8,7 @@ import Text from "#/components/Text.astro";
 <div
   class="mx-auto flex w-[90%] max-w-(--width-base) items-end justify-between pt-32"
 >
-  <ul class="flex flex-col pb-4 text-base">
+  <ul class="flex flex-col gap-2 pb-4 text-base">
     {
       navItems.map((item) => (
         <>
@@ -17,18 +17,12 @@ import Text from "#/components/Text.astro";
               as="a"
               href={item.url}
               variant="footerHeading"
-              class:list={[
-                "hover:text-accent hover-underline-animation",
-                `/${Astro.url.pathname.split("/")[1]}` === item.url &&
-                  "text-accent",
-              ]}
+              class="hover:text-accent hover-underline-animation"
             >
               {item.label}
             </Text>
-          </li>
-          {item.subMenu && (
-            <li class="ps-4">
-              <ul class="flex flex-col">
+            {item.subMenu && (
+              <ul class="flex flex-col ps-4">
                 {item.subMenu.map((subItem) => (
                   <Text
                     as="a"
@@ -40,8 +34,8 @@ import Text from "#/components/Text.astro";
                   </Text>
                 ))}
               </ul>
-            </li>
-          )}
+            )}
+          </li>
         </>
       ))
     }
@@ -58,29 +52,5 @@ import Text from "#/components/Text.astro";
     ul a[href$="#vision"] {
       color: var(--color-accent);
     }
-  }
-
-  .hover-underline-animation {
-    display: inline-block;
-    position: relative;
-  }
-
-  .hover-underline-animation::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--color-accent);
-
-    transform: scaleX(0);
-    transform-origin: bottom left;
-    transition: transform 0.25s ease-out;
-  }
-
-  .hover-underline-animation:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
   }
 </style>

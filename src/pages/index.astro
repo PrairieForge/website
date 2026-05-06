@@ -19,48 +19,7 @@ import {
   TreePine,
 } from "@lucide/astro";
 
-const priorities = [
-  {
-    id: "big-god-theology",
-    icon: Mountain,
-    prefix: "shaped by",
-    coreValue: "Big God Theology",
-    description:
-      "We emphasize Christ as the sovereign ruler over all of heaven and earth.",
-  },
-  {
-    id: "persuasive-preaching",
-    icon: BookOpenText,
-    prefix: "proclaimed in",
-    coreValue: "Persuasive Preaching",
-    description:
-      "We seek to proclaim God’s word by conforming the content and intent of the sermon with that of the text in a compelling way so that listeners are taught, pleased, and moved.",
-  },
-  {
-    id: "intentional-ecclesiology",
-    icon: Church,
-    prefix: "portrayed through",
-    coreValue: "Intentional Ecclesiology",
-    description:
-      "We promote clear definitions and practice of baptistic church governance and ordinances.",
-  },
-  {
-    id: "compelling-culture",
-    icon: Flame,
-    prefix: "experienced as",
-    coreValue: "Compelling Culture",
-    description:
-      "We seek to build church communities that draw others in through gospel love and unity.",
-  },
-  {
-    id: "deliberately-rural-mission",
-    icon: TreePine,
-    prefix: "spread through",
-    coreValue: "Deliberately Rural Mission",
-    description:
-      "We are specifically focused on revitalizing and planting churches in the region of Southern Minnesota.",
-  },
-];
+import { priorities } from "#/data/home";
 ---
 
 <Layout>
@@ -81,7 +40,7 @@ const priorities = [
 
   <Container
     as="section"
-    class="relative flex h-svh flex-col justify-center gap-8"
+    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
     id="vision"
   >
     <Text as={"h2"} variant={"subheading"}>
@@ -98,7 +57,7 @@ const priorities = [
 
   <Container
     as="section"
-    class="relative flex h-svh flex-col justify-center gap-8"
+    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
     id="vision-2"
   >
     <Text as={"h2"} variant={"subheading"}>Jesus was unstrategic</Text>
@@ -122,7 +81,7 @@ const priorities = [
 
   <Container
     as="section"
-    class="relative flex h-svh flex-col justify-center gap-8"
+    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
     id="vision-3"
   >
     <Text as={"h2"} variant={"subheading"}
@@ -157,7 +116,11 @@ const priorities = [
 
   <!-- BG Muted -->
   <div class="bg-muted">
-    <Container as="article" class="flex flex-col gap-32 py-32" id="vision-4">
+    <Container
+      as="article"
+      class="flex scroll-mt-20 flex-col gap-32 py-32"
+      id="vision-4"
+    >
       <Text as="h2" variant={"subheading"}>
         Over the next 100 years, we aim to start and strengthen churches in
         Southern MN that share a <span class="text-primary">

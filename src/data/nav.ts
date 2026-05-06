@@ -23,12 +23,12 @@ export const navItems: MenuItem[] = [
       },
       {
         id: "residency",
-        label: "Residency",
+        label: "Pastoral Residency",
         url: "/strategy#residency",
       },
       {
         id: "events",
-        label: "Events",
+        label: "Prairie Fires",
         url: "/strategy#events",
       },
     ],
@@ -40,13 +40,13 @@ export const navItems: MenuItem[] = [
     subMenu: [
       {
         id: "map",
-        label: "Map",
+        label: "Member Churches",
         url: "/about#map",
       },
       {
-        id: "constitution",
-        label: "Constitution",
-        url: "/about#constitution",
+        id: "friends",
+        label: "Friends of Prairie Forge",
+        url: "/about#friends",
       },
       {
         id: "join",
@@ -54,9 +54,9 @@ export const navItems: MenuItem[] = [
         url: "/about#join",
       },
       {
-        id: "friends",
-        label: "Friends",
-        url: "/about#friends",
+        id: "constitution",
+        label: "Our Documents",
+        url: "/about#constitution",
       },
     ],
   },
