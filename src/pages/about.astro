@@ -1,24 +1,17 @@
 ---
-import Layout from "#/layouts/Layout.astro";
-import Container from "#/components/Container.astro";
-import Text from "#/components/Text.astro";
-
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
 import bgPlants from "#/assets/bg-plants.webp";
 import bgRoots from "#/assets/bg-roots.webp";
-
+import Container from "#/components/Container.astro";
 import Map from "#/components/Map.astro";
-import { churches } from "#/data/about";
+import Text from "#/components/Text.astro";
+import Layout from "#/layouts/Layout.astro";
+import { sortByKey } from "#/lib/utils";
 
-// Sort churches alphabetically
-churches.sort((a, b) => {
-  const nameA = a.name.toUpperCase();
-  const nameB = b.name.toUpperCase();
-
-  if (nameA < nameB) return -1;
-  if (nameA > nameB) return 1;
-  return 0;
-});
+const churches = (await getCollection("churches")).sort(sortByKey("name"));
+const friends = (await getCollection("friends")).sort(sortByKey("name"));
 ---
 
 <Layout>
@@ -42,10 +35,25 @@ churches.sort((a, b) => {
     class="relative flex min-h-svh flex-col justify-center gap-8"
   >
     <Text as={"h2"} variant={"subSubheading"} class="text-base">
-      We are <span class="text-primary">
-        a group of like-minded churches in southern MN
-      </span> partnering together to start and strengthen other like-minded churches
-      in southern MN.
+      We are a group of <a
+        href="#map"
+        class="text-primary hover:text-primary/90 hover-underline-animation"
+      >
+        like-minded churches,
+      </a> partnered with one another and with other
+      <a
+        href="#friends"
+        class="text-primary hover:text-primary/90 hover-underline-animation"
+      >
+        trusted organizations
+      </a> to plant the gospel deep in the soil of Southern Minnesota over the next
+      hundred years. We'd love for you to
+      <a
+        href="#join"
+        class="text-primary hover:text-primary/90 hover-underline-animation"
+      >
+        join us!
+      </a>
     </Text>
   </Container>
 
@@ -60,9 +68,9 @@ churches.sort((a, b) => {
     <Map data={churches} />
     <ul class="text-secondary">
       {
-        churches.map(({ url, name, city }) => (
+        churches.map(({ data: { name, url, city } }) => (
           <li>
-            <a href={url} class="underline">
+            <a href={url} class="underline" target="_blank">
               {name} ({city})
             </a>
           </li>
@@ -80,16 +88,15 @@ churches.sort((a, b) => {
       >Friends of Prairie Forge</Text
     >
     <ul class="text-secondary">
-      <li>
-        <a class="underline" href="https://bcsmn.edu/">
-          Bethlehem College and Seminary
-        </a>
-      </li>
-      <li>
-        <a class="underline" href="https://tctnetwork.org/">
-          Treasuring Christ Together Network
-        </a>
-      </li>
+      {
+        friends.map(({ data: { name, url } }) => (
+          <li>
+            <a href={url} class="underline" target="_blank">
+              {name}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </Container>
 
@@ -106,18 +113,8 @@ churches.sort((a, b) => {
         hello@prairieforge.org
       </a>
     </p>
-  </Container>
-
-  <Container
-    as="section"
-    class="relative flex min-h-svh flex-col justify-center gap-8"
-    id="constitution"
-  >
-    <Text as={"h2"} variant={"subSubheading"} class="text-base"
-      >Constitution</Text
-    >
     <p class="text-secondary">
-      Download our Constitution <a href="#" class="underline">here.</a>
+      Download our constitution <a href="#" class="underline">here.</a>
     </p>
   </Container>
 </Layout>

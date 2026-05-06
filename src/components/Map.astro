@@ -1,6 +1,8 @@
 ---
+import { type CollectionEntry } from "astro:content";
+
 interface Props {
-  data: Object[];
+  data: CollectionEntry<"churches">[];
   fullscreen?: boolean;
 }
 
@@ -32,6 +34,8 @@ let mapHeight = fullscreen ? "100%" : "70%";
 >
 </script>
 <script>
+  import type { CollectionEntry } from "astro:content";
+
   const map = L.map("hs-grayscale-leaflet", {
     center: [44.06065321193066, -93.1908356898296],
     zoom: 9,
@@ -81,12 +85,14 @@ let mapHeight = fullscreen ? "100%" : "70%";
 
   let data;
   if (dataString) {
-    data = JSON.parse(dataString) as DataItem[];
+    data = JSON.parse(dataString) as CollectionEntry<"churches">[];
   }
 
   if (data) {
     data.forEach((item) => {
-      L.marker(item.coords).bindPopup(createPopupContent(item)).addTo(map);
+      const gps = JSON.parse(item.data.gps).coordinates;
+      const coords = [gps[1], gps[0]];
+      L.marker(coords).bindPopup(createPopupContent(item.data)).addTo(map);
     });
   }
 

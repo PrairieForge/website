@@ -1,17 +1,23 @@
 ---
-import Layout from "#/layouts/Layout.astro";
-import Container from "#/components/Container.astro";
-import Text from "#/components/Text.astro";
-import Card from "#/components/Card.astro";
-
 import { Image } from "astro:assets";
+
+import { format } from "date-fns";
+
 import bgPlants from "#/assets/bg-plants.webp";
 import bgRoots from "#/assets/bg-roots.webp";
+import eventImg from "#/assets/event.webp";
 import fellowshipImg from "#/assets/fellowship.webp";
 import internshipImg from "#/assets/internship.webp";
-import eventImg from "#/assets/event.webp";
-
+import Card from "#/components/Card.astro";
+import Container from "#/components/Container.astro";
+import Text from "#/components/Text.astro";
+import * as meetings from "#/data/meetings.md";
 import { internshipBenefits, internshipDescription } from "#/data/strategy";
+import Layout from "#/layouts/Layout.astro";
+
+const { description, date, location, url } = meetings.frontmatter;
+// Astro adds 'Z' to unmarked timestamp; so slice strips Z back out for parsing.
+const parsedDate = format(new Date(date.slice(0, -1)), "MMMM do 'at' p");
 ---
 
 <Layout>
@@ -83,15 +89,14 @@ import { internshipBenefits, internshipDescription } from "#/data/strategy";
       <div class="flex flex-col gap-8 md:flex-row">
         <div class="flex flex-col gap-8 md:order-2">
           <p class="text-secondary">
-            We meet the second Tuesday of each month from 9am–11am. The location
-            varies. We often go out to lunch after.
+            {description}
           </p>
           <p class="text-secondary">
-            Join us at our next meeting: Tuesday, May 12th at <a
-              href="http://sojourners.church"
+            Join us at our next meeting: {parsedDate} at <a
+              href={url}
               class="underline"
             >
-              Sojourners Church in Albert Lea.
+              {location}.
             </a>
           </p>
         </div>

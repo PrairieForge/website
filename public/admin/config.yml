@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: PrairieForge/website
+
+media_folder: /public/media
+public_folder: /media
+
+singletons:
+  - name: meetings
+    label: Monthly Meetings
+    file: /src/data/meetings.md
+    icon: calendar_today
+    fields:
+      - { name: description, label: Meetings Description, widget: text }
+      - { name: date, label: Date, widget: datetime }
+      - { name: location, label: Location }
+      - { name: url, label: Url, widget: string, type: url, required: false }
+
+collections:
+  - name: churches
+    label: Partner Churches
+    label_singular: Partner Church
+    identifier_field: name
+    folder: /src/data/churches
+    icon: church
+    fields:
+      - { label: Church Name, name: name, widget: string }
+      - { label: City, name: city, widget: string }
+      - { label: Pastor, name: pastor, widget: string }
+      - { label: Email, name: email, widget: string, type: email }
+      - { label: Website, name: url, widget: string, type: url }
+      - { label: GPS Coords, name: gps, widget: map }
+  - name: friends
+    label: Friends of Prairie Forge
+    label_singular: Friend of Prairie Forge
+    identifier_field: name
+    folder: /src/data/friends
+    icon: handshake
+    fields:
+      - { label: Org Name, name: name, widget: string }
+      - { label: Website, name: url, widget: string, type: url }

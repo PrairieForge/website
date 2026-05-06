@@ -53,11 +53,6 @@ export const navItems: MenuItem[] = [
         label: "How to Join",
         url: "/about#join",
       },
-      {
-        id: "constitution",
-        label: "Our Documents",
-        url: "/about#constitution",
-      },
     ],
   },
   {
