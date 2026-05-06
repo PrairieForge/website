@@ -40,7 +40,7 @@ const isEven = index % 2 === 1;
     </CardMedia>
     <CardTitle class="flex flex-col">
       {
-        item.prefix ?? (
+        item.prefix && (
           <span class="text-secondary/60 text-base">{item.prefix}</span>
         )
       }
