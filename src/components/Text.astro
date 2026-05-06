@@ -24,8 +24,6 @@ const {
   class: className,
   ...attrs
 } = Astro.props as Props<HTMLTag>;
-
-import { fluidType } from "#/lib/fluidTypeGenerator";
 ---
 
 <As class:list={[variants[variant], className]} {...attrs}>
