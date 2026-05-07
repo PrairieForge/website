@@ -195,9 +195,12 @@ export const POST: APIRoute = async ({ request }) => {
     });
   } catch (err) {
     console.error("Webhook handler error:", err);
-    return new Response(JSON.stringify({ error: "Internal server error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ error: `Internal server error: ${err}` }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 };
