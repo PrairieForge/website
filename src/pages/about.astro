@@ -20,11 +20,19 @@ const friends = (await getCollection("friends")).sort(sortByKey("name"));
     <Container as="section" width="wide" variant="hero">
       <Text as="h1" variant="hero">About Us</Text>
     </Container>
-    <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
+    <Image
+      src={bgPlants}
+      alt={"background image of prairiegrass plants"}
+      priority
+    />
   </div>
 
   <!-- BG Dark -->
-  <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
+  <Image
+    src={bgRoots}
+    alt={"background image of prairiegrass roots"}
+    priority
+  />
 
   <Container as="section">
     <Text as={"h2"} variant={"subSubheading"} class="text-base">

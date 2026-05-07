@@ -26,11 +26,19 @@ const parsedDate = format(new Date(date.slice(0, -1)), "MMMM do 'at' p");
     <Container as="section" width="wide" variant="hero">
       <Text as="h1" variant="hero">Our Strategy</Text>
     </Container>
-    <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
+    <Image
+      src={bgPlants}
+      alt={"background image of prairiegrass plants"}
+      priority
+    />
   </div>
 
   <!-- BG Dark -->
-  <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
+  <Image
+    src={bgRoots}
+    alt={"background image of prairiegrass roots"}
+    priority
+  />
 
   <Container as="section" width="wide">
     <Text as={"h2"} variant={"subSubheading"} class="text-base">

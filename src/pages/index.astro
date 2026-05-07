@@ -19,11 +19,19 @@ import Layout from "#/layouts/Layout.astro";
     <Container as="section" width="wide" variant="hero">
       <Text as="h1" variant="hero">The Prairie Forge Initiative</Text>
     </Container>
-    <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
+    <Image
+      src={bgPlants}
+      alt={"background image of prairiegrass plants"}
+      priority
+    />
   </div>
 
   <!-- BG Dark -->
-  <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
+  <Image
+    src={bgRoots}
+    alt={"background image of prairiegrass roots"}
+    priority
+  />
 
   <Container as="section">
     <Text

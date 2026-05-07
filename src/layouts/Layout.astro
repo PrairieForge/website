@@ -1,6 +1,8 @@
 ---
 import "#/styles/global.css";
+
 import { Font } from "astro:assets";
+
 import Footer from "#/layouts/Footer.astro";
 import Nav from "#/layouts/Nav.astro";
 ---
@@ -21,8 +23,8 @@ import Nav from "#/layouts/Nav.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Prairie Forge Initiative</title>
 
-    <Font cssVariable="--font-sans" />
-    <Font cssVariable="--font-serif" />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-serif" preload />
   </head>
   <body>
     <Nav />
