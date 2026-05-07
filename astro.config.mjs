@@ -1,4 +1,5 @@
 // @ts-check
+import netlify from "@astrojs/netlify";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import { loadEnv } from "vite";
@@ -19,10 +20,13 @@ export default defineConfig({
       cssVariable: "--font-serif",
     },
   ],
+
   vite: {
     plugins: [tailwindcss()],
     server: {
       allowedHosts: [NGROK_HOST],
     },
   },
+
+  adapter: netlify(),
 });
