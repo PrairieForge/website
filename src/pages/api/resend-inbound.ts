@@ -12,7 +12,10 @@
  */
 
 import type { APIRoute } from "astro";
-import { type WebhookEventPayload } from "resend";
+import {
+  type GetReceivingEmailResponseSuccess,
+  type WebhookEventPayload,
+} from "resend";
 
 import { resend } from "#/lib/resend";
 
@@ -27,6 +30,40 @@ const RESEND_WEBHOOK_SECRET = import.meta.env.DEV
   : import.meta.env.RESEND_WEBHOOK_SECRET_PROD;
 const RESEND_TOPICS = JSON.parse(import.meta.env.RESEND_TOPICS);
 const RESEND_SEGMENTS = JSON.parse(import.meta.env.RESEND_SEGMENTS);
+
+const buildName = (email: GetReceivingEmailResponseSuccess) => {
+  const suffix = `(${email.from})`;
+  const ellipsis = "...";
+  const max = 70;
+  const words = email.subject.split(" ");
+
+  let fit = fitWords(words, max - suffix.length);
+  const truncated = fit !== email.subject.trim();
+
+  const from = `${truncated ? ellipsis : ""}${suffix.trimStart()}`;
+  if (truncated) {
+    fit = fitWords(words, max - from.length);
+  }
+
+  return `${fit}${from}`.trim();
+};
+
+const fitWords = (words: string[], available: number) => {
+  if (available <= 0) return "";
+
+  let subject = "";
+  for (const word of words) {
+    const next = subject ? `${subject} ${word}` : word;
+    if (next.length > available) break;
+    subject = next;
+  }
+
+  if (!subject && words[0]) {
+    subject = words[0].slice(0, available);
+  }
+
+  return subject;
+};
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -155,6 +192,8 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    const name = buildName(email);
+
     // Create broadcast
     const { data: broadcast, error: createBroadcastError } =
       await resend.broadcasts.create({
@@ -165,7 +204,7 @@ export const POST: APIRoute = async ({ request }) => {
         html: email.html ?? "",
         text: email.text ?? "",
         replyTo: email.from,
-        name: `${email.subject} (${email.from})`,
+        name,
       });
 
     if (createBroadcastError) {
