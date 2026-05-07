@@ -1,12 +1,13 @@
 ---
-import { navItems } from "#/data/nav";
 import { Image } from "astro:assets";
+
 import blacksmithImg from "#/assets/blacksmith.webp";
 import Text from "#/components/Text.astro";
+import { navItems } from "#/data/nav";
 ---
 
 <div
-  class="mx-auto flex w-[90%] max-w-(--width-base) items-end justify-between pt-32"
+  class="pt-lg mx-auto flex w-[90%] max-w-(--width-base) items-end justify-between"
 >
   <ul class="flex flex-col gap-2 pb-4 text-base">
     {
@@ -43,14 +44,3 @@ import Text from "#/components/Text.astro";
 
   <Image src={blacksmithImg} alt={"blacksmith"} class={"size-40 sm:size-80"} />
 </div>
-
-<style>
-  body:has(#vision:target),
-  body:has(#vision-2:target),
-  body:has(#vision-3:target),
-  body:has(#vision-4:target) {
-    ul a[href$="#vision"] {
-      color: var(--color-accent);
-    }
-  }
-</style>

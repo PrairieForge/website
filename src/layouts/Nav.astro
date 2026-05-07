@@ -1,11 +1,12 @@
 ---
-import { navItems } from "#/data/nav";
 import { Menu, X } from "@lucide/astro";
+
+import { navItems } from "#/data/nav";
 ---
 
 <!-- Use group and group-has-checked to toggle menu icon / checkbox / menu | https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-the-descendants-of-a-group | https://youtu.be/8eFeIFKAKHw?si=bTKM55MwRC8z5e2c -->
 <nav
-  class="group text-background sticky top-0 z-50 flex h-20 justify-end items-center px-4 md:backdrop-blur-md"
+  class="group text-background sticky top-0 z-50 flex h-20 items-center justify-end px-4 md:backdrop-blur-md"
 >
   <input type="checkbox" id="sidebar-toggle" class="hidden" />
   <div class="relative z-50 size-10 md:hidden">
@@ -28,29 +29,38 @@ import { Menu, X } from "@lucide/astro";
   <div
     class="bg-background text-foreground md:text-background fixed inset-0 z-40 flex h-full translate-x-full flex-col items-center justify-center transition-all duration-200 ease-out group-has-checked:translate-none max-md:gap-4 md:relative md:w-full md:translate-none md:flex-row md:bg-transparent"
   >
-
     <!-- <h1>The current URL is: {Astro.url}</h1> -->
     <!-- <h1>
       The current URL pathname is: {`/${Astro.url.pathname.split("/")[1]}`}
     </h1> -->
-    <ul class="flex flex-col max-md:gap-4 max-md:text-2xl md:flex-row font-sans tracking-wider">
-      <li>
-        <a href="/" class:list={["px-4 py-2 hover-underline-animation rounded-lg max-md:text-4xl"]}>
+    <ul
+      class="flex flex-col font-sans tracking-wider max-md:text-2xl md:flex-row"
+    >
+      <li class="flex justify-center">
+        <a
+          href="/"
+          onclick="document.getElementById('sidebar-toggle').checked = false"
+          class:list={[
+            "hover-underline-animation rounded-lg px-4 py-2 text-center max-md:text-6xl",
+          ]}
+        >
           <h1>The Prairie Forge Initiative</h1>
         </a>
       </li>
       {
         navItems.map((item) => (
-          <li>
-            <!-- <Button as='a' href={item.url} variant={'ghost'} class:list={[`/${Astro.url.pathname.split("/")[1]}` === item.url &&
-              "text-accent",]}>
-              {item.label}
-            </Button> -->
+          <li class="flex justify-center">
             <a
               href={item.url}
-              class:list={['px-4 py-2 hover-underline-animation rounded-lg',`/${Astro.url.pathname.split("/")[1]}` === item.url &&
-              "text-accent bg-background/90 ",]}
-              >{item.label}</a>
+              onclick="document.getElementById('sidebar-toggle').checked = false"
+              class:list={[
+                "hover-underline-animation rounded-lg px-4 py-2 text-center max-md:text-4xl",
+                `/${Astro.url.pathname.split("/")[1]}` === item.url &&
+                  "text-accent bg-background/90",
+              ]}
+            >
+              {item.label}
+            </a>
           </li>
         ))
       }
@@ -65,7 +75,11 @@ import { Menu, X } from "@lucide/astro";
   body:has(#vision-4:target) {
     nav a[href$="#vision"] {
       color: var(--color-accent);
-      background-color: color-mix(in srgb, var(--color-background) 90%, transparent);
+      background-color: color-mix(
+        in srgb,
+        var(--color-background) 90%,
+        transparent
+      );
     }
   }
 

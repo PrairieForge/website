@@ -1,14 +1,15 @@
 ---
-import {
-  Card as CardRoot,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  CardMedia,
-} from "#/components/ui/card";
 import { type AstroComponent } from "@lucide/astro";
+
+import {
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardMedia,
+  Card as CardRoot,
+  CardTitle,
+} from "#/components/ui/card";
 
 interface Props {
   item: {
@@ -29,8 +30,8 @@ const isEven = index % 2 === 1;
 <CardRoot
   class:list={[
     isEven
-      ? "bg-[color-mix(in_srgb,var(--color-background)_50%,var(--color-muted))]"
-      : "bg-[color-mix(in_srgb,var(--color-background)_80%,var(--color-muted))]",
+      ? "bg-[color-mix(in_srgb,var(--color-background)_30%,var(--color-muted))]"
+      : "bg-[color-mix(in_srgb,var(--color-background)_90%,var(--color-muted))]",
     "transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.015] hover:shadow-md",
   ]}
 >

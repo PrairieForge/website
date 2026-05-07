@@ -1,27 +1,22 @@
 ---
-import Layout from "#/layouts/Layout.astro";
-import Container from "#/components/Container.astro";
-import Text from "#/components/Text.astro";
-
 import { Image } from "astro:assets";
-import bgPlants from "#/assets/bg-plants.webp";
-import bgRoots from "#/assets/bg-roots.webp";
 
-import Card from "#/components/Card.astro";
-import { Button } from "#/components/ui/button";
 import { MoveDown, MoveRight } from "@lucide/astro";
 
+import bgPlants from "#/assets/bg-plants.webp";
+import bgRoots from "#/assets/bg-roots.webp";
+import Card from "#/components/Card.astro";
+import Container from "#/components/Container.astro";
+import Text from "#/components/Text.astro";
+import { Button } from "#/components/ui/button";
 import { priorities } from "#/data/home";
+import Layout from "#/layouts/Layout.astro";
 ---
 
 <Layout>
   <!-- BG Light -->
   <div class="bg-foreground">
-    <Container
-      as="section"
-      width="wide"
-      class="text-background pt-32 text-center"
-    >
+    <Container as="section" width="wide" variant="hero">
       <Text as="h1" variant="hero">The Prairie Forge Initiative</Text>
     </Container>
     <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
@@ -30,29 +25,31 @@ import { priorities } from "#/data/home";
   <!-- BG Dark -->
   <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
-    id="vision"
-  >
-    <Text as={"h2"} variant={"subheading"}>
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subheading"}
+      id="vision"
+      class="scroll-mt-nav pt-lg"
+    >
       Planting the gospel deep in the soil of Southern Minnesota over the next
       hundred years.
     </Text>
     <Button
       variant={"link"}
-      class="text-primary bounce-down mt-32 w-fit self-center"
+      class="text-primary bounce-down w-fit self-center"
       as="a"
       href="/#vision-2">Find out how. <MoveDown /></Button
     >
   </Container>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
-    id="vision-2"
-  >
-    <Text as={"h2"} variant={"subheading"}>Jesus was unstrategic</Text>
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subheading"}
+      id="vision-2"
+      class="scroll-mt-nav pt-lg">Jesus was unstrategic</Text
+    >
     <p class="text-secondary">
       He came to the sound of angels singing and then spent the next thirty
       years learning carpentry. Even during his public ministry, he spent most
@@ -65,19 +62,18 @@ import { priorities } from "#/data/home";
     </p>
     <Button
       variant={"link"}
-      class="text-primary bounce-down mt-32 w-fit self-center"
+      class="text-primary bounce-down w-fit self-center"
       as="a"
       href="/#vision-3">Trusting him takes imagination. <MoveDown /></Button
     >
   </Container>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
-    id="vision-3"
-  >
-    <Text as={"h2"} variant={"subheading"}
-      >Many view rural ministry as unstrategic</Text
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subheading"}
+      id="vision-3"
+      class="scroll-mt-nav pt-lg">Many view rural ministry as unstrategic</Text
     >
     <p class="text-secondary">
       Yet we believe rural ministry presents a unique opportunity to display the
@@ -100,7 +96,7 @@ import { priorities } from "#/data/home";
     </p>
     <Button
       variant={"link"}
-      class="text-primary bounce-down mt-32 w-fit self-center"
+      class="text-primary bounce-down w-fit self-center"
       as="a"
       href="/#vision-4">Our 100 year vision. <MoveDown /></Button
     >
@@ -108,12 +104,13 @@ import { priorities } from "#/data/home";
 
   <!-- BG Muted -->
   <div class="bg-muted">
-    <Container
-      as="article"
-      class="flex scroll-mt-20 flex-col gap-32 py-32"
-      id="vision-4"
-    >
-      <Text as="h2" variant={"subheading"}>
+    <Container as="section" variant="end">
+      <Text
+        as="h2"
+        variant={"subheading"}
+        id="vision-4"
+        class="scroll-mt-nav pt-lg"
+      >
         Over the next 100 years, we aim to start and strengthen churches in
         Southern MN that share a <span class="text-primary">
           Gospel Imaginary.

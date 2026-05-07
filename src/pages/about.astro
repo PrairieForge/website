@@ -17,11 +17,7 @@ const friends = (await getCollection("friends")).sort(sortByKey("name"));
 <Layout>
   <!-- BG Light -->
   <div class="bg-foreground">
-    <Container
-      as="section"
-      width="wide"
-      class="text-background pt-32 text-center"
-    >
+    <Container as="section" width="wide" variant="hero">
       <Text as="h1" variant="hero">About Us</Text>
     </Container>
     <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
@@ -30,10 +26,7 @@ const friends = (await getCollection("friends")).sort(sortByKey("name"));
   <!-- BG Dark -->
   <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh flex-col justify-center gap-8"
-  >
+  <Container as="section">
     <Text as={"h2"} variant={"subSubheading"} class="text-base">
       We are a group of <a
         href="#map"
@@ -57,12 +50,14 @@ const friends = (await getCollection("friends")).sort(sortByKey("name"));
     </Text>
   </Container>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh flex-col justify-center gap-8"
-    id="map"
-  >
-    <Text as={"h2"} variant={"subSubheading"} class="text-base">
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subSubheading"}
+      class="text-base"
+      id="map"
+      class="scroll-mt-nav pt-lg"
+    >
       Partner Churches
     </Text>
     <Map data={churches} />
@@ -79,13 +74,12 @@ const friends = (await getCollection("friends")).sort(sortByKey("name"));
     </ul>
   </Container>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh flex-col justify-center gap-8"
-    id="friends"
-  >
-    <Text as={"h2"} variant={"subSubheading"} class="text-base"
-      >Friends of Prairie Forge</Text
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subSubheading"}
+      id="friends"
+      class="scroll-mt-nav pt-lg text-base">Friends of Prairie Forge</Text
     >
     <ul class="text-secondary">
       {
@@ -100,13 +94,12 @@ const friends = (await getCollection("friends")).sort(sortByKey("name"));
     </ul>
   </Container>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh flex-col justify-center gap-8"
-    id="join"
-  >
-    <Text as={"h2"} variant={"subSubheading"} class="text-base"
-      >How to join</Text
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subSubheading"}
+      id="join"
+      class="scroll-mt-nav pt-lg text-base">How to join</Text
     >
     <p class="text-secondary">
       Contact us at <a href="mailto:hello@prairieforge.org" class="underline">

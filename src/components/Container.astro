@@ -6,22 +6,32 @@ const widths = {
   wide: "mx-auto w-[90%] max-w-(--width-wide)",
 };
 
+const variants = {
+  default:
+    "relative flex min-h-[50svh] scroll-mt-nav flex-col gap-md pb-lg md:min-h-svh justify-center",
+  hero: "pt-lg ",
+  end: "flex scroll-mt-nav flex-col gap-lg pb-lg",
+};
+
 type Width = keyof typeof widths;
+type Variant = keyof typeof variants;
 
 interface Props extends HTMLAttributes<"div"> {
   as: "div" | "section" | "article";
   width?: Width;
+  variant?: Variant;
   class?: string;
 }
 
 const {
   as: As = "div",
   width = "base",
+  variant = "default",
   class: className,
   ...attrs
 } = Astro.props as Props;
 ---
 
-<As class:list={[widths[width], className]} {...attrs}>
+<As class:list={[widths[width], variants[variant], className]} {...attrs}>
   <slot />
 </As>

@@ -23,11 +23,7 @@ const parsedDate = format(new Date(date.slice(0, -1)), "MMMM do 'at' p");
 <Layout>
   <!-- BG Light -->
   <div class="bg-foreground">
-    <Container
-      as="section"
-      width="wide"
-      class="text-background pt-32 text-center"
-    >
+    <Container as="section" width="wide" variant="hero">
       <Text as="h1" variant="hero">Our Strategy</Text>
     </Container>
     <Image src={bgPlants} alt={"background image of prairiegrass plants"} />
@@ -36,11 +32,7 @@ const parsedDate = format(new Date(date.slice(0, -1)), "MMMM do 'at' p");
   <!-- BG Dark -->
   <Image src={bgRoots} alt={"background image of prairiegrass roots"} />
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh flex-col justify-center gap-8"
-    width="wide"
-  >
+  <Container as="section" width="wide">
     <Text as={"h2"} variant={"subSubheading"} class="text-base">
       We gather for monthly <a
         href="#fellowship"
@@ -76,12 +68,12 @@ const parsedDate = format(new Date(date.slice(0, -1)), "MMMM do 'at' p");
   </Container>
 
   <div class="bg-muted">
-    <Container
-      as="section"
-      class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
-      id="fellowship"
-    >
-      <Text as={"h2"} variant={"subheading"}
+    <Container as="section">
+      <Text
+        as={"h2"}
+        variant={"subheading"}
+        id="fellowship"
+        class="scroll-mt-nav pt-lg"
         >We gather once a month for <span class="text-primary">
           pastoral fellowship
         </span> and strategic planning.</Text
@@ -109,12 +101,12 @@ const parsedDate = format(new Date(date.slice(0, -1)), "MMMM do 'at' p");
     </Container>
   </div>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
-    id="internship"
-  >
-    <Text as={"h2"} variant={"subheading"}
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subheading"}
+      id="internship"
+      class="scroll-mt-nav pt-lg"
       >Our <span class="text-primary">summer internship</span> is all about catching
       a Gospel Imaginary.</Text
     >
@@ -148,32 +140,34 @@ const parsedDate = format(new Date(date.slice(0, -1)), "MMMM do 'at' p");
     </p>
   </Container>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
-    id="residency"
-  >
-    <Text as={"h2"} variant={"subheading"}
-      >We are building extended <span class="text-primary">
-        pastoral residencies.
-      </span></Text
-    >
-    <p class="text-secondary">
-      Stay in the loop by emailing us at <a
-        href="mailto:hello@prairieforge.org"
-        class="underline"
+  <div class="bg-muted">
+    <Container as="section">
+      <Text
+        as={"h2"}
+        variant={"subheading"}
+        id="residency"
+        class="scroll-mt-nav pt-lg"
+        >We are building extended <span class="text-primary">
+          pastoral residencies.
+        </span></Text
       >
-        hello@prairieforge.org
-      </a>
-    </p>
-  </Container>
+      <p class="text-secondary">
+        Stay in the loop by emailing us at <a
+          href="mailto:hello@prairieforge.org"
+          class="underline"
+        >
+          hello@prairieforge.org
+        </a>
+      </p>
+    </Container>
+  </div>
 
-  <Container
-    as="section"
-    class="relative flex min-h-svh scroll-mt-20 flex-col justify-center gap-8"
-    id="events"
-  >
-    <Text as={"h2"} variant={"subheading"}
+  <Container as="section">
+    <Text
+      as={"h2"}
+      variant={"subheading"}
+      id="events"
+      class="scroll-mt-nav pt-lg"
       >We host periodic training events called <span class="text-primary">
         Prairie Fires.
       </span></Text

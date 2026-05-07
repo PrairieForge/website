@@ -6,6 +6,17 @@
 @theme {
   --width-base: 65ch;
   --width-wide: 90ch;
+  --spacing-sm: 8px;
+  --spacing-md: 24px;
+  --spacing-lg: 48px;
+  --spacing-nav: 80px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --spacing-md: 32px;
+    --spacing-lg: 128px;
+  }
 }
 
 @theme inline {
